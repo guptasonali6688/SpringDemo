@@ -24,4 +24,8 @@ public class FlightService {
 	public List<Flight> fetchAll() {
 		return crudRepository.fetchAll(Flight.class);
 	}
+
+	public Flight getFlight(String flightNo) {
+		return crudRepository.fetchById(Flight.class, flightNo);
+	}
 }

@@ -3,6 +3,7 @@ package com.zycus.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,5 +30,10 @@ public class FlightController {
 	public String add(@RequestBody Flight flight) {
 		flightservice.addNewFlight(flight);
 		return "Flight record created successfully";
+	}
+	
+	@RequestMapping(value = "/flight/{flightNo}", method = RequestMethod.GET, produces="application/json")
+	public Flight get(@PathVariable("flightNo") String flightNo) {
+		return flightservice.getFlight(flightNo);
 	}
 }
