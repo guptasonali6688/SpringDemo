@@ -10,7 +10,7 @@ public class HelloController {
 	
 	@RequestMapping("/hello.do")
 	public String hello(Map model) {
-		model.put("message", "Welcome to SpringMVC");
+		model.put("message", "Welcome to SpringMVC"); //model
 		return "hello.jsp"; //view
 	}
 }

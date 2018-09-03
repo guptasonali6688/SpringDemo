@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Flight</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#flightform").submit(function(event) {
+			event.preventDefault();
+			var flightObj = {
+					flightNo : $("#flightNo").val(),
+					carrier : $("#carrier").val(),
+					source : $("#source").val(),
+					destination : $("#destination").val(),
+					duration : $("#duration").val()
+			}
+			var flightObjAsJSON = JSON.stringify(flightObj);
+			alert(flightObjAsJSON);
+			$.ajax( {
+				url : "rest/flight/add",
+				type : "POST",
+				data : flightObjAsJSON,
+				contentType : "application/json",
+				success : function(response, status) {
+					alert(response);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form id="flightform">
+		Enter Flight No : <input id="flightNo" /><br />
+		Enter Carrier : <input id="carrier" /><br />
+		Enter Source : <input id="source" /><br />
+		Enter Destination : <input id="destination" /><br />
+		Enter Duration (mins) : <input id="duration" /><br />
+		<input  type="submit" value="Add"/>
+	</form>
+</body>
+</html>
