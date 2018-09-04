@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Place Order</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#newProduct").submit(function(event) {
+			event.preventDefault();
+			var productObj = {
+					name : $("#name").val(),
+					price : $("#price").val(),
+					quantity : $("#quantity").val()
+			}
+			var productObjAsJSON = JSON.stringify(productObj);
+			alert(productObjAsJSON);
+			$.ajax( {
+				url : "/shopping/addProduct",
+				type : "POST",
+				data : productObjAsJSON,
+				contentType : "application/json",
+				success : function(response, status) {
+					alert(response);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form id="newProduct">
+		Enter Name : <input id="name" /><br />
+		Enter Price : <input id="price" /><br />
+		Enter Quantity : <input id="quantity" /><br />
+		<input  type="submit" value="Add"/>
+	</form>
+</body>
+</html>
